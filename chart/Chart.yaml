@@ -1,0 +1,14 @@
+apiVersion: v1
+appVersion: "1.0.0"
+description: maintain AWS ECR credentials in most namespaces
+name: aws-ecr-creds
+version: 1.0.0
+maintainers:
+- email: engineers@catalystsquad.com
+  name: Catalyst Squad
+keywords:
+- aws ecr
+- imagePullSecrets
+- kubernetes
+sources:
+  - https://github.com/catalystsquad/chart-aws-ecr-creds

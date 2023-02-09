@@ -1,0 +1,32 @@
+# aws.account is the aws account number of the ECR (string)
+# aws.region is the aws region where the ECR exists
+# aws.accessKeyId is the credential of a user for the ECR
+# aws.secretAccessKey is the credential of a user for the ECR
+aws:
+  account: ""
+  region: ""
+
+image: quay.io/catalystsquad/catalyst-aws-kube-image
+imageTag: latest
+
+namespaceOverride: "aws-ecr-creds"
+
+serviceAccount:
+  create: true
+
+# If you have multiple instances of ECR creds, you will want to change this name.
+# Otherwise, you will have competing replacements.
+secretName: aws-ecr-creds
+
+cronSchedule: "* */4 * * *"
+
+# For overriding, but you should just add more to additionalNamespaceExceptions
+namespaceExceptions:
+  - kube-system
+  - default
+  - kube-node-lease
+  - kube-public
+  - local-path-storage
+
+# Use this to add more exceptions
+additionalNamespaceExceptions: []
