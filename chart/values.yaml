@@ -5,6 +5,8 @@
 aws:
   account: ""
   region: ""
+  accessKeyId: ""
+  secretAccessKey: ""
 
 image: quay.io/catalystsquad/catalyst-aws-kube-image
 imageTag: latest
