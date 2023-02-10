@@ -34,6 +34,7 @@ spec:
         - "bash"
         - "-c"
         - |
+          set -e
           AWS_ACCOUNT={{ .Values.aws.account }}
           AWS_REGION={{ .Values.aws.region }}
           DOCKER_REGISTRY_SERVER=https://${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com
@@ -54,12 +55,12 @@ spec:
               fi
             done
             if [[ $match == 0 ]]; then
-              kubectl delete secret --namespace "${namespace}" "{{ .Values.secretName }}-secret" || true
               kubectl create secret --namespace "${namespace}" docker-registry "{{ .Values.secretName }}-secret" \
               --docker-server=$DOCKER_REGISTRY_SERVER \
               --docker-username=$DOCKER_USER \
               --docker-password=$DOCKER_PASSWORD \
-              --docker-email=no@email.local
+              --docker-email=no@email.local \
+              -o yaml --dry-run=client --save-config | kubectl apply -f -
             fi
           done
 

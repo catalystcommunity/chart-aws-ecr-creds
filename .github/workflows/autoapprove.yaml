@@ -2,7 +2,7 @@ name: Auto approve
 on:
   pull_request:
     branches:
-      - alpha
+      - main
 jobs:
   auto-approve:
     name: Approve automated code releases

@@ -30,15 +30,13 @@ Inspired by architectminds/aws-ecr-credential but that chart was severely limite
 - Kubernetes 1.21+
 - Helm 3.0+
 
-## TODO: FINISH FROM HERE
 ## Installing the Chart
 
 To install the chart with the release name `my-release`:
 
 ```console
 $ helm repo add catalystsquad https://raw.githubusercontent.com/catalystsquad/charts/main
-$ # If you don't have the namespace to deploy this to already, you need to create it first
-$ kubectl create namespace [namespace]
+$ # If you don't have the namespace to deploy this to already, you need to create it with --create-namespace added
 $ helm install my-release catalystsquad/aws-ecr-creds -n [namespace] \
   --set-string aws.account=<aws account nubmer> \
   --set aws.region=<aws region> \
