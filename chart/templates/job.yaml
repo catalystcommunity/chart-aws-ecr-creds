@@ -1,0 +1,67 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "aws-ecr-creds.fullname" . }}-job
+  namespace: {{ include "aws-ecr-creds.namespace" . | quote }}
+  labels:
+{{ include "aws-ecr-creds.labels" . | indent 4 }}
+spec:
+  backoffLimit: 4
+  template:
+    metadata:
+      labels:
+{{ include "aws-ecr-creds.podLabels" . | indent 8 }}
+    spec:
+      serviceAccountName: {{ include "aws-ecr-creds.serviceAccountName" . }}
+      terminationGracePeriodSeconds: 0
+      restartPolicy: Never
+      containers:
+      - name: kubectl
+        imagePullPolicy: IfNotPresent
+        image: {{ .Values.image }}:{{ .Values.imageTag }}
+        env:
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secretName }}-keys-secret
+                key: AWS_ACCESS_KEY_ID
+          - name: AWS_SECRET_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secretName }}-keys-secret
+                key: AWS_SECRET_ACCESS_KEY
+        command:
+        - "bash"
+        - "-c"
+        - |
+          set -e
+          AWS_ACCOUNT={{ .Values.aws.account }}
+          AWS_REGION={{ .Values.aws.region }}
+          DOCKER_REGISTRY_SERVER=https://${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com
+          DOCKER_USER=AWS
+          DOCKER_PASSWORD=`aws ecr get-login --region ${AWS_REGION} --registry-ids ${AWS_ACCOUNT} | cut -d' ' -f6`
+
+          EXCEPTIONS="$(echo "{{ include "aws-ecr-creds.exceptionList" . }}" | tr '\n' ' ')"
+          NAMESPACES="$(kubectl get namespaces -o json | yq '.items[].metadata.name' | tr '\n' ' ')"
+          
+          for namespace in ${NAMESPACES}; do
+            echo "name: $namespace"
+            match=0
+            for exception in ${EXCEPTIONS}; do
+              echo "exception: $exception"
+              if [[ "${namespace}" == "${exception}" ]]; then
+                match=1
+                break
+              fi
+            done
+            if [[ $match == 0 ]]; then
+              kubectl create secret --namespace "${namespace}" docker-registry "{{ .Values.secretName }}-secret" \
+              --docker-server=$DOCKER_REGISTRY_SERVER \
+              --docker-username=$DOCKER_USER \
+              --docker-password=$DOCKER_PASSWORD \
+              --docker-email=no@email.local \
+              -o yaml --dry-run=client --save-config | kubectl apply -f -
+            fi
+          done
+
+          echo "aws-ecr-creds job {{ include "aws-ecr-creds.fullname" . }}-job completed successfully, ${DOCKER_REGISTRY_SERVER} access updated"

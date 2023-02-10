@@ -5,7 +5,6 @@ on:
       - closed
     branches:
       - main
-      - alpha
     paths:
       - 'chart/**'
 jobs:
