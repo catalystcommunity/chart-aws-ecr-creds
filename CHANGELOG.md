@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/catalystsquad/chart-aws-ecr-creds/compare/v1.0.1...v1.0.2) (2023-07-14)
+
+
+### Bug Fixes
+
+* the default schedule to only run every 4th hour ([#4](https://github.com/catalystsquad/chart-aws-ecr-creds/issues/4)) ([f5baf9c](https://github.com/catalystsquad/chart-aws-ecr-creds/commit/f5baf9ceaa60b7fc3228cadd7e60cea218a953ee))
+
 ## [1.0.1](https://github.com/catalystsquad/chart-aws-ecr-creds/compare/v1.0.0...v1.0.1) (2023-07-14)
 
 
