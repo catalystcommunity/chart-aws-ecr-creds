@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/catalystsquad/chart-aws-ecr-creds/compare/v1.0.0...v1.0.1) (2023-07-14)
+
+
+### Bug Fixes
+
+* update the password command to use get-login-password ([#5](https://github.com/catalystsquad/chart-aws-ecr-creds/issues/5)) ([9350a59](https://github.com/catalystsquad/chart-aws-ecr-creds/commit/9350a5991422ab2ea9b4890aeac42bb40b3a9257))
+
 # 1.0.0 (2023-02-10)
 
 
