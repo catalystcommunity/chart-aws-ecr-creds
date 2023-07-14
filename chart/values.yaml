@@ -20,7 +20,7 @@ serviceAccount:
 # Otherwise, you will have competing replacements.
 secretName: aws-ecr-creds
 
-cronSchedule: "* */4 * * *"
+cronSchedule: "0 */4 * * *"
 
 # For overriding, but you should just add more to additionalNamespaceExceptions
 namespaceExceptions:
