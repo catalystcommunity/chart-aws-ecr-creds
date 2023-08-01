@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/catalystsquad/chart-aws-ecr-creds/compare/v1.0.2...v1.0.3) (2023-08-01)
+
+
+### Bug Fixes
+
+* update password command in job ([#7](https://github.com/catalystsquad/chart-aws-ecr-creds/issues/7)) ([8525e6e](https://github.com/catalystsquad/chart-aws-ecr-creds/commit/8525e6e40267c4ec04008168715b28963722b198))
+
 ## [1.0.2](https://github.com/catalystsquad/chart-aws-ecr-creds/compare/v1.0.1...v1.0.2) (2023-07-14)
 
 
