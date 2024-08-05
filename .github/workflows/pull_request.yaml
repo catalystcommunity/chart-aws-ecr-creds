@@ -12,13 +12,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: crazy-max/ghaction-dump-context@v1
-      - uses: catalystsquad/action-validate-conventional-commits-pr@v1
+      - uses: catalystcommunity/action-validate-conventional-commits-pr@v1
   validate-chart:
     if: ${{ !startsWith( github.head_ref, 'automated-code-release' ) }}
     name: Validate Chart
     runs-on: ubuntu-latest
     steps:
       - uses: crazy-max/ghaction-dump-context@v1
-      - uses: catalystsquad/action-validate-helm-chart@v1
+      - uses: catalystcommunity/action-validate-helm-chart@v1
         with:
           validate-main-alpha-merge: false

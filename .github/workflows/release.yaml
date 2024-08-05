@@ -13,7 +13,7 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - uses: catalystsquad/action-release-helm-chart@v2
+      - uses: catalystcommunity/action-release-helm-chart@v2
         with:
           token: ${{ secrets.AUTOMATION_PAT }}
           merge-to-alpha: 'false'

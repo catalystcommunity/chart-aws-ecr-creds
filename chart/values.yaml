@@ -8,7 +8,7 @@ aws:
   accessKeyId: ""
   secretAccessKey: ""
 
-image: quay.io/catalystsquad/catalyst-aws-kube-image
+image: quay.io/catalystcommunity/catalyst-aws-kube-image
 imageTag: latest
 
 namespaceOverride: "aws-ecr-creds"

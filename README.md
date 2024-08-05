@@ -7,8 +7,8 @@ This runs a cron job every N minutes (default 240 minutes or 4 hours) and replac
 ## TL;DR;
 
 ```console
-$ helm repo add catalystsquad https://raw.githubusercontent.com/catalystsquad/charts/main
-$ helm install my-release catalystsquad/aws-ecr-creds -n [namespace] \
+$ helm repo add catalystcommunity https://raw.githubusercontent.com/catalystcommunity/charts/main
+$ helm install my-release catalystcommunity/aws-ecr-creds -n [namespace] \
   --set-string aws.account=<aws account nubmer> \
   --set aws.region=<aws region> \
   --set aws.accessKeyId=<base64> \
@@ -35,9 +35,9 @@ Inspired by architectminds/aws-ecr-credential but that chart was severely limite
 To install the chart with the release name `my-release`:
 
 ```console
-$ helm repo add catalystsquad https://raw.githubusercontent.com/catalystsquad/charts/main
+$ helm repo add catalystcommunity https://raw.githubusercontent.com/catalystcommunity/charts/main
 $ # If you don't have the namespace to deploy this to already, you need to create it with --create-namespace added
-$ helm install my-release catalystsquad/aws-ecr-creds -n [namespace] \
+$ helm install my-release catalystcommunity/aws-ecr-creds -n [namespace] \
   --set-string aws.account=<aws account nubmer> \
   --set aws.region=<aws region> \
   --set aws.accessKeyId=<base64> \
@@ -64,7 +64,7 @@ The following table lists the configurable parameters of the Typesense chart and
 
 | Parameter                               | Description                                                                 | Default                                                 |
 |-----------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------|
-| `image`                                 | URL for the image to run                                                    | `quay.io/catalystsquad/catalyst-aws-kube-image`         |
+| `image`                                 | URL for the image to run                                                    | `quay.io/catalystcommunity/catalyst-aws-kube-image`         |
 | `imageTag`                              | Tag for the image                                                           | `latest`                                                |
 | `namespaceOverride`                     | Namespace to install things to if not using --namespace in the helm command | `aws-ecr-creds`                                         |
 | `aws.account`                           | Account number of the AWS account for the ECR repos                         | `""`                                                    |

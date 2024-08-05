@@ -11,4 +11,4 @@ keywords:
 - imagePullSecrets
 - kubernetes
 sources:
-  - https://github.com/catalystsquad/chart-aws-ecr-creds
+  - https://github.com/catalystcommunity/chart-aws-ecr-creds
